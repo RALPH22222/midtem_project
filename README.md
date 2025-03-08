@@ -19,8 +19,8 @@ pip install django
 
 ## 4. Create a Django Project
 ```sh
-django-admin startproject project_name
-cd project_name
+django-admin startproject Student_management
+cd Student_management
 ```
 
 ## 5. Run the Development Server
@@ -30,7 +30,7 @@ python manage.py runserver
 
 ## 6. Create a Django App
 ```sh
-python manage.py startapp app_name
+python manage.py startapp students
 ```
 
 ## 7. Configure Installed Apps
@@ -38,13 +38,13 @@ Open `app_name/apps.py` and copy the class name:
 ```python
 class AppNameConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'app_name'
+    name = 'students'
 ```
-Add the app to `INSTALLED_APPS` in `project_name/settings.py`:
+Add the students to `INSTALLED_APPS` in `Student_management/settings.py`:
 ```python
 INSTALLED_APPS = [
     ...
-    'app_name.apps.AppNameConfig',
+    'students',
 ]
 ```
 
@@ -57,7 +57,7 @@ In `settings.py`, update the `DIRS` setting:
 ```
 
 ## 9. Set Up URLs
-Inside `app_name`, create a new file `urls.py` and add:
+Inside `students`, create a new file `urls.py` and add:
 ```python
 from django.urls import path
 from . import views
@@ -67,7 +67,7 @@ urlpatterns = [
 ]
 ```
 
-Update `project_name/urls.py`:
+Update `Student_management/urls.py`:
 ```python
 from django.contrib import admin
 from django.urls import path, include
@@ -88,9 +88,9 @@ urlpatterns = [
    DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.mysql',
-           'NAME': 'your_database_name',
-           'USER': 'your_username',  
-           'PASSWORD': 'your_password',
+           'NAME': 'Student_management',
+           'USER': 'root',  
+           'PASSWORD': '',
            'HOST': 'localhost',
            'PORT': '3306',
        }
@@ -102,10 +102,4 @@ urlpatterns = [
 python manage.py makemigrations
 python manage.py migrate
 ```
-
-### Notes:
-- You can migrate first, then add fields to Django models later.
-- Ensure that views, URLs, and templates are properly updated in your app folder.
-
-This guide provides a structured approach to setting up a Django project with MySQL database integration. Follow these steps carefully to avoid errors.
 
